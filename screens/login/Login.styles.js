@@ -1,9 +1,60 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {},
-  input: {
-    borderWidth: 1,
+  container: {
+    flex: 1,
+  },
+  top: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+    flexDirection: "row",
+    height: 60,
+  },
+  logo: {
+    width: 42,
+    height: 56,
+  },
+  title: {
+    color: "#FFFFFF",
+    fontSize: 32,
+    textShadowColor: "#003279",
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    marginLeft: 12,
+  },
+  email: {
+    marginTop: 10,
+  },
+  descView: {
+    marginLeft: 10,
+    width: "80%",
+    backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    height: 36,
+    paddingTop: 2,
+  },
+  inputView: {
+    marginLeft: 10,
+    width: "80%",
+    backgroundColor: "#003279",
+    borderRadius: 16,
+    height: 48,
+    justifyContent: "center",
+    top: -14,
+  },
+  emailTitle: {
+    color: "#003279",
+    marginLeft: 12,
+  },
+  emailInput: {
+    color: "#FFFFFF",
+    marginLeft: 12,
+    fontSize: 16,
   },
 });
 

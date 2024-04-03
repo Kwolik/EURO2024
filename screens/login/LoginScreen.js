@@ -4,6 +4,7 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import React from "react";
 import styles from "./Login.styles";
@@ -14,28 +15,42 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Logowanie</Text>
+      <View style={styles.top}>
+        <Image
+          source={require("../../assets/EURO2024logo.png")}
+          style={styles.logo}
+        />
+        <Text style={styles.title}>Logowanie</Text>
+      </View>
       <SafeAreaView>
-        <View>
-          <Text>Email</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeEmail}
-            autoComplete="email"
-            keyboardType="email-address"
-            textContentType="emailAddress"
-          ></TextInput>
+        <View style={styles.email}>
+          <View style={styles.descView}>
+            <Text style={styles.emailTitle}>Email</Text>
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.emailInput}
+              onChangeText={onChangeEmail}
+              autoComplete="email"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+            ></TextInput>
+          </View>
         </View>
 
-        <View>
-          <Text>Hasło</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangePassword}
-            autoComplete="new-password"
-            secureTextEntry={true}
-            textContentType="newPassword"
-          ></TextInput>
+        <View style={styles.email}>
+          <View style={styles.descView}>
+            <Text style={styles.emailTitle}>Hasło</Text>
+          </View>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.emailInput}
+              onChangeText={onChangePassword}
+              autoComplete="new-password"
+              secureTextEntry={true}
+              textContentType="newPassword"
+            ></TextInput>
+          </View>
         </View>
 
         <View>

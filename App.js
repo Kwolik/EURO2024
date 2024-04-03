@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: "auto", //upewnic sie czy background dobrze sie skaluje
   },
 });
