@@ -9,7 +9,7 @@ import {
 import React from "react";
 import styles from "./Login.styles";
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
 
@@ -53,15 +53,29 @@ export default function LoginScreen({ navigation }) {
           </View>
         </View>
 
-        <View>
+        <View style={styles.buttons}>
           <TouchableOpacity>
             <Text>Logowanie po google</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Zaloguj się</Text>
+          <TouchableOpacity style={styles.buttonLogged}>
+            <Text style={styles.buttonTitle}>Zaloguj się</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      <View style={styles.fingerpintImage}>
+      <Image
+          source={require("../../assets/fingerpirnt.png")}
+          style={styles.fingerprint}
+        />
+      </View>
+      <TouchableOpacity style={styles.routeRegistiration}>
+        <View style={styles.descViewFirst}>
+          <Text style={styles.descTextFirst}>Nie jesteś jeszcze zarejestrowany?</Text>
+        </View>
+        <View style={styles.descViewTwo}>
+          <Text style={styles.descTextTwo}>Kliknij i przejdź do rejestracji</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

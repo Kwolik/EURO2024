@@ -56,6 +56,79 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontSize: 16,
   },
+  buttons: {
+    width: "80%",
+    marginLeft: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonLogged: {
+    width: 100,
+    height: 40,
+    backgroundColor: "#003279",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 16,
+  },
+  buttonTitle: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+
+    textShadowColor: "#000000",
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 2,
+      height: 2,
+    },
+  },
+  fingerpintImage: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "80%",
+    marginLeft: 10,
+    marginTop: 16,
+  },
+  fingerprint: {
+    width: 72,
+    height: 72,
+    tintColor: "#FFFFFF",
+  },
+  routeRegistiration: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 10,
+    width: "80%",
+    marginTop: 16,
+  },
+  descViewFirst: {
+    backgroundColor: "#003279",
+    borderRadius: 16,
+    height: 48,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1,
+  },
+  descViewTwo: {
+    backgroundColor: "#FFFFFF",
+    width: "100%",
+    height: 36,
+    top: -16,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    borderBottomLeftRadius: 16,
+    borderBottomEndRadius: 16,
+  },
+  descTextFirst: {
+    color: "#FFFFFF",
+    fontSize: 16,
+  },
+  descTextTwo: {
+    color: "#003279",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });
 
 export default styles;
