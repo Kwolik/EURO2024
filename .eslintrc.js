@@ -1,10 +1,10 @@
 module.exports = {
-    root: true,
-    extends: [
-      'eslint:recommended',
-    ],
-    rules: {
-      // Ensures props and state inside functions are always up-to-date
-      'react-hooks/exhaustive-deps': 'warn',
-    },
-  };
+  root: true,
+  extends: ["airbnb"],
+  rules: {
+    // Ensures props and state inside functions are always up-to-date
+    "react-hooks/exhaustive-deps": "warn",
+  },
+  plugins: ["react"],
+};
+
