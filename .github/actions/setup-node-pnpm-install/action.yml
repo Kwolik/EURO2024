@@ -1,12 +1,12 @@
 # 🔗 Links:
 # Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/actions/setup-node-pnpm-install/action.yml
 
-name: "Setup  Node + PNPM + Install Dependencies"
-description: "Setup  Node + PNPM + Install Dependencies"
+name: "Setup  Node + NPM + Install Dependencies"
+description: "Setup  Node + NPM + Install Dependencies"
 runs:
   using: "composite"
   steps:
-    - uses: pnpm/action-setup@v2
+    - uses: npm/action-setup@v2
       with:
         version: 8
     - uses: actions/setup-node@v3
@@ -14,5 +14,5 @@ runs:
         node-version: 18
         cache: "npm"
       
-    - name: 📦 Setup Node + PNPM + install deps
+    - name: 📦 Setup Node +PNPM + install deps
       uses: ./.github/actions/setup-node-pnpm-install
