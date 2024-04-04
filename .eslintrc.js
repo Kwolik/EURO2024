@@ -8,7 +8,3 @@ module.exports = {
   plugins: ["react"],
 };
 
-module.exports = {
-  extends: "airbnb",
-  plugins: ["react"],
-};
