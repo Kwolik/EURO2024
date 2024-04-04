@@ -12,7 +12,9 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-        cache: "pnpm"
+        cache: "npm"
+    - run: npm install
+    - run: npm test
       
     - name: 📦 Setup Node + PNPM + install deps
       uses: ./.github/actions/setup-node-pnpm-install
