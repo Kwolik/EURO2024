@@ -1,7 +1,7 @@
 module.exports = {
     root: true,
     extends: [
-      'universe/native',
+      'eslint:recommended',
     ],
     rules: {
       // Ensures props and state inside functions are always up-to-date
