@@ -17,3 +17,6 @@ runs:
     - name: 📦 Install Project Dependencies
       run: pnpm install --frozen-lockfile
       shell: bash
+      
+    - name: 📦 Setup Node + PNPM + install deps
+      uses: ./.github/actions/setup-node-pnpm-install
