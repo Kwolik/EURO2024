@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ["airbnb"],
+  extends: ["eslint:recommended",  "plugin:@typescript-eslint/recommended"],
   rules: {
     // Ensures props and state inside functions are always up-to-date
     "react-hooks/exhaustive-deps": "warn",
@@ -8,3 +8,7 @@ module.exports = {
   plugins: ["react"],
 };
 
+module.exports = {
+  extends: "airbnb",
+  plugins: ["react"],
+};
