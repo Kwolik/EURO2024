@@ -25,5 +25,5 @@ runs:
         cache: 'pnpm'
 
     - name: 📦 Install Project Dependencies
-      run: npm install 
+      run: pnpm install 
       shell: bash
