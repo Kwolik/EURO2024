@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "EURO2024",
+    "scheme": "com.euro2024.app",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
