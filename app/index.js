@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import LoginScreen from "./(auth)/LoginScreen";
 
 //Upewnic sie co do status bara
