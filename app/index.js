@@ -6,7 +6,6 @@ import LoginScreen from "./(auth)/LoginScreen";
 export default function Page() {
   return (
     <View style={styles.container}>
-      <StatusBar style="dark" translucent={true} />
       <LoginScreen />
     </View>
   );
