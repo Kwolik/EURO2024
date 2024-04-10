@@ -10,6 +10,7 @@ import {
 import React from "react";
 import styles from "./styles.js";
 import { router } from "expo-router";
+import { appSignIn } from "../../../store.js";
 
 export default function LoginScreen() {
   const [email, onChangeEmail] = React.useState("");
@@ -63,7 +64,17 @@ export default function LoginScreen() {
             <TouchableOpacity>
               <Text>Logowanie po google</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonLogged}>
+            <TouchableOpacity
+              style={styles.buttonLogged}
+              onPress={async () => {
+                const resp = await appSignIn(email, password);
+                if (resp?.user) {
+                  router.replace("/(main)/HomeScreen");
+                } else {
+                  console.log(resp.error);
+                }
+              }}
+            >
               <Text style={styles.buttonTitle}>Zaloguj się</Text>
             </TouchableOpacity>
           </View>

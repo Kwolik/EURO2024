@@ -10,8 +10,10 @@ import {
 import React from "react";
 import styles from "./styles.js";
 import { router } from "expo-router";
+import { appSignUp } from "../../../store.js";
 
 export default function RegistrationScreen() {
+  const [name, onChangeName] = React.useState("Bob");
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [passwordRepeat, onChangePasswordRepeat] = React.useState("");
@@ -76,7 +78,21 @@ export default function RegistrationScreen() {
           </View>
 
           <View style={styles.buttons}>
-            <TouchableOpacity style={styles.buttonLogged}>
+            <TouchableOpacity
+              style={styles.buttonLogged}
+              onPress={async () => {
+                if (password == passwordRepeat) {
+                  const resp = await appSignUp(email, password, name);
+                  if (resp?.user) {
+                    router.replace("/(main)/HomeScreen");
+                  } else {
+                    console.log("blad: " + resp.error);
+                  }
+                } else {
+                  console.log("Hasła nie sa takie same");
+                }
+              }}
+            >
               <Text style={styles.buttonTitle}>Utwórz konto</Text>
             </TouchableOpacity>
           </View>
