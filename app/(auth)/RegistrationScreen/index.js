@@ -13,7 +13,7 @@ import { router } from "expo-router";
 import { appSignUp } from "../../../store.js";
 
 export default function RegistrationScreen() {
-  const [name, onChangeName] = React.useState("Bob");
+  const [name, onChangeName] = React.useState("");
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [passwordRepeat, onChangePasswordRepeat] = React.useState("");
@@ -32,6 +32,20 @@ export default function RegistrationScreen() {
           <Text style={styles.title}>Rejestracja</Text>
         </View>
         <SafeAreaView>
+          <View style={styles.email}>
+            <View style={styles.descView}>
+              <Text style={styles.emailTitle}>Nick</Text>
+            </View>
+            <View style={styles.inputView}>
+              <TextInput
+                style={styles.emailInput}
+                onChangeText={onChangeName}
+                autoComplete="username"
+                keyboardType="default"
+                textContentType="nickname"
+              ></TextInput>
+            </View>
+          </View>
           <View style={styles.email}>
             <View style={styles.descView}>
               <Text style={styles.emailTitle}>Email</Text>
