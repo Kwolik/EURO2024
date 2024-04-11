@@ -4,7 +4,6 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
-  Image,
   ImageBackground,
 } from "react-native";
 import React from "react";
@@ -22,13 +21,6 @@ export default function LoginScreen() {
         source={require("../../../assets/background.jpg")}
         style={styles.image}
       >
-        <View style={styles.top}>
-          <Image
-            source={require("../../../assets/EURO2024logo.png")}
-            style={styles.logo}
-          />
-          <Text style={styles.title}>Logowanie</Text>
-        </View>
         <SafeAreaView>
           <View style={styles.email}>
             <View style={styles.descView}>
@@ -79,12 +71,6 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View>
         </SafeAreaView>
-        <View style={styles.fingerpintImage}>
-          <Image
-            source={require("../../../assets/fingerpirnt.png")}
-            style={styles.fingerprint}
-          />
-        </View>
         <TouchableOpacity
           style={styles.routeRegistiration}
           onPress={() => router.replace("/RegistrationScreen")}

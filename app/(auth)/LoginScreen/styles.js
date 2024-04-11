@@ -8,28 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "auto", //upewnic sie czy background dobrze sie skaluje
   },
-  top: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "90%",
-    flexDirection: "row",
-    height: 60,
-  },
-  logo: {
-    width: 42,
-    height: 56,
-  },
-  title: {
-    color: "#FFFFFF",
-    fontSize: 32,
-    textShadowColor: "#003279",
-    textShadowRadius: 1,
-    textShadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    marginLeft: 12,
-  },
   email: {
     marginTop: 10,
   },
@@ -85,18 +63,6 @@ const styles = StyleSheet.create({
       width: 2,
       height: 2,
     },
-  },
-  fingerpintImage: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "80%",
-    marginLeft: 10,
-    marginTop: 16,
-  },
-  fingerprint: {
-    width: 72,
-    height: 72,
-    tintColor: "#FFFFFF",
   },
   routeRegistiration: {
     justifyContent: "center",
