@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   buttons: {
     width: "80%",
     marginLeft: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonLogged: {
     width: 100,

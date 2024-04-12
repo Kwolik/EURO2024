@@ -4,7 +4,7 @@ import { Image, View, StyleSheet, Text } from "react-native";
 
 export default function _layout() {
   return (
-    <Stack screenOptions={{}}>
+    <Stack>
       <Stack.Screen
         name="LoginScreen/index"
         options={() => ({

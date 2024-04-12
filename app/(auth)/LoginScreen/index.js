@@ -53,9 +53,6 @@ export default function LoginScreen() {
           </View>
 
           <View style={styles.buttons}>
-            <TouchableOpacity>
-              <Text>Logowanie po google</Text>
-            </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonLogged}
               onPress={async () => {
