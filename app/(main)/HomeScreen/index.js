@@ -1,7 +1,8 @@
-import { View, Text, ImageBackground } from "react-native";
+import { View, ImageBackground, Text } from "react-native";
 import React from "react";
 import styles from "./styles.js";
 import NextMatch from "../../../components/NextMatch/index.js";
+import TopRanked from "../../../components/TopRanked/index.js";
 
 export default function HomeScreen() {
   return (
@@ -11,8 +12,16 @@ export default function HomeScreen() {
         style={styles.image}
       >
         <View>
-        <Text>Siema co tam?</Text>
           <NextMatch />
+        </View>
+        <View>
+          <TopRanked />
+        </View>
+        <View>
+          <Text>Kafelki</Text>
+          <Text>Pilka - wszystkie mecze</Text>
+          <Text>star - ranking</Text>
+          <Text>zebatka/profile - profil</Text>
         </View>
       </ImageBackground>
     </View>

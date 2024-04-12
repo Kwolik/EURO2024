@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 16,
+    zIndex: 1,
   },
   flag: {
     marginLeft: 12,
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     top: -12,
-    zIndex: -1,
   },
   team: {
     fontSize: 18, //sprawdzic czy nie zmniejszyc
