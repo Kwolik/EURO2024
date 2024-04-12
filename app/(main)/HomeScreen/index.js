@@ -1,6 +1,7 @@
 import { View, Text, ImageBackground } from "react-native";
 import React from "react";
 import styles from "./styles.js";
+import NextMatch from "../../../components/NextMatch/index.js";
 
 export default function HomeScreen() {
   return (
@@ -10,7 +11,8 @@ export default function HomeScreen() {
         style={styles.image}
       >
         <View>
-          <Text>HOME.......</Text>
+        <Text>Siema co tam?</Text>
+          <NextMatch />
         </View>
       </ImageBackground>
     </View>
