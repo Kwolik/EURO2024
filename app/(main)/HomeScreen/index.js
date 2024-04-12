@@ -1,7 +1,6 @@
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import React from "react";
 import styles from "./styles.js";
-import { router } from "expo-router";
 
 export default function HomeScreen() {
   return (
@@ -13,13 +12,6 @@ export default function HomeScreen() {
         <View>
           <Text>HOME.......</Text>
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            router.replace("/LoginScreen");
-          }}
-        >
-          <Text>Zmiana na logowanie</Text>
-        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
