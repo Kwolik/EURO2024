@@ -5,6 +5,7 @@ import NextMatch from "../../../components/NextMatch/index.js";
 import TopRanked from "../../../components/TopRanked/index.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import RowMatch from "../../../components/RowMatch/index.js";
+import ChampionRow from "../../../components/ChampionRow/index.js";
 
 export default function HomeScreen() {
   return (
@@ -49,6 +50,10 @@ export default function HomeScreen() {
           <RowMatch />
           <RowMatch />
           <RowMatch />
+        </View>
+        <View>
+          <ChampionRow />
+          <ChampionRow />
         </View>
       </ImageBackground>
     </View>
