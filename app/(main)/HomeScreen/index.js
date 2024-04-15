@@ -4,6 +4,7 @@ import styles from "./styles.js";
 import NextMatch from "../../../components/NextMatch/index.js";
 import TopRanked from "../../../components/TopRanked/index.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import RowMatch from "../../../components/RowMatch/index.js";
 
 export default function HomeScreen() {
   return (
@@ -43,6 +44,11 @@ export default function HomeScreen() {
               <Text style={styles.name}>Profil</Text>
             </View>
           </View>
+        </View>
+        <View>
+          <RowMatch />
+          <RowMatch />
+          <RowMatch />
         </View>
       </ImageBackground>
     </View>
