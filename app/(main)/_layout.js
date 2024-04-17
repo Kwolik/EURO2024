@@ -31,6 +31,10 @@ export default function _layout() {
           statusBarColor: "#003279",
         })}
       />
+      <Stack.Screen
+        name="MatchScreen/index"
+        options={{ headerShown: false, statusBarColor: "#003279" }}
+      />
     </Stack>
   );
 }

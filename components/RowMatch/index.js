@@ -1,11 +1,16 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import styles from "./styles.js";
 import CountryFlag from "react-native-country-flag";
+import { useRouter } from "expo-router";
 
 export default function NextMatch() {
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => router.replace("/MatchScreen")}
+    >
       <View style={styles.top}>
         <Text style={styles.info}>14.06</Text>
         <CountryFlag isoCode="fr" size={32} />
@@ -16,6 +21,6 @@ export default function NextMatch() {
       <View style={styles.bottom}>
         <Text style={styles.teams}>Francja - Polska</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
