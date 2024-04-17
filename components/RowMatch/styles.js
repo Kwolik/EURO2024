@@ -2,50 +2,47 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    resizeMode: "auto", //upewnic sie czy background dobrze sie skaluje
-  },
-  plates: {
-    flexDirection: "row",
-    justifyContent: "space-between",
     width: "90%",
+    justifyContent: "center",
+    alignItems: "center",
 
     borderColor: "red",
     borderWidth: 2,
   },
-  plate: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 100,
-  },
-  icon: {
+  top: {
     width: "100%",
-    height: 60,
+    height: 42,
     backgroundColor: "#003279",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    borderRadius: 16,
-    zIndex: 1,
+    borderRadius: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  iconMain: {
-    fontSize: 48,
+  info: {
     color: "#FFFFFF",
+    fontSize: 16,
+  },
+  result: {
+    color: "#FFFFFF",
+    fontSize: 24,
+    fontWeight: "bold",
   },
   bottom: {
     width: "100%",
-    height: 34,
+    height: 40,
     backgroundColor: "#FFFFFF",
-    justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: -16,
+    justifyContent: "flex-end",
+    marginTop: -18,
+    zIndex: -1,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
   },
-  name: {
+  teams: {
     color: "#003279",
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
