@@ -1,12 +1,28 @@
-import { View, ImageBackground, Text } from "react-native";
-import React from "react";
+import {
+  View,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import React, { useCallback, useRef } from "react";
 import styles from "./styles.js";
 import CountryFlag from "react-native-country-flag";
 import Player from "../../../components/Player/index.js";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function MatchScreen() {
+  // ref
+  const bottomSheetRef = useRef(BottomSheet);
+
+  // callbacks
+  const handleSheetChanges = useCallback((index) => {
+    console.log("handleSheetChanges", index);
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <ImageBackground
         source={require("../../../assets/backgroundMatch.jpg")}
         style={styles.image}
@@ -42,8 +58,23 @@ export default function MatchScreen() {
           <Player />
           <Player />
         </View>
-        <View></View>
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.viewButton}>
+            <Text style={styles.textButton}>Obstaw mecz</Text>
+          </View>
+        </TouchableOpacity>
+        <SafeAreaView style={styles.bottomSheet}>
+          <BottomSheet
+            ref={bottomSheetRef}
+            onChange={handleSheetChanges}
+            snapPoints={["10%", "60%", "100%"]}
+          >
+            <BottomSheetView style={styles.contentContainer}>
+              <Text>Obstawianie meczy 🎉</Text>
+            </BottomSheetView>
+          </BottomSheet>
+        </SafeAreaView>
       </ImageBackground>
-    </View>
+    </GestureHandlerRootView>
   );
 }

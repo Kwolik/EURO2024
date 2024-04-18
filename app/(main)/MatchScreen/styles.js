@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
-    marginBottom: 36,
+    marginBottom: 20,
   },
   teams: {
     color: "#003279",
@@ -65,6 +65,32 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     margin: 10,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  viewButton: {
+    width: 120,
+    height: 40,
+    backgroundColor: "#003279",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 16,
+  },
+  textButton: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  bottomSheet: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: "center",
+    height: "auto",
   },
 });
 
