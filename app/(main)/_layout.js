@@ -13,6 +13,7 @@ export default function _layout() {
         name="MatchesScreen/index"
         options={() => ({
           title: "Mecze",
+          headerBackVisible: false,
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -37,8 +38,10 @@ export default function _layout() {
       />
       <Stack.Screen
         name="RankedScreen/index"
+        headerBackVisible={false}
         options={() => ({
           title: "Ranking",
+          headerBackVisible: false,
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: "80%",
+    width: "90%",
     height: 60,
     marginTop: 2,
   },
