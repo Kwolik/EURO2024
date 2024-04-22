@@ -13,6 +13,7 @@ export default function _layout() {
         name="MatchesScreen/index"
         options={() => ({
           title: "Mecze",
+          headerBackVisible: false,
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -34,6 +35,30 @@ export default function _layout() {
       <Stack.Screen
         name="MatchScreen/index"
         options={{ headerShown: false, statusBarColor: "#003279" }}
+      />
+      <Stack.Screen
+        name="RankedScreen/index"
+        headerBackVisible={false}
+        options={() => ({
+          title: "Ranking",
+          headerBackVisible: false,
+          headerTitle: (props) => (
+            <View style={styles.header}>
+              <Image
+                style={styles.logo}
+                source={require("../../assets/EURO2024logo.png")}
+              />
+              <Text style={styles.title}>{props.children}</Text>
+            </View>
+          ),
+          headerBackground: () => (
+            <Image
+              style={styles.image}
+              source={require("../../assets/background.jpg")}
+            />
+          ),
+          statusBarColor: "#003279",
+        })}
       />
     </Stack>
   );

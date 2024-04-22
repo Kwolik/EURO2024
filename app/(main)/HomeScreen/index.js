@@ -33,7 +33,7 @@ export default function HomeScreen() {
           <View style={styles.plates}>
             <TouchableOpacity
               style={styles.plate}
-              onPress={() => router.replace("/MatchesScreen")}
+              onPress={() => router.navigate("/MatchesScreen")}
             >
               <View style={styles.icon}>
                 <Ionicons name="football-outline" style={styles.iconMain} />
@@ -42,14 +42,17 @@ export default function HomeScreen() {
                 <Text style={styles.name}>Mecze</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.plate}>
+            <TouchableOpacity
+              style={styles.plate}
+              onPress={() => router.navigate("/RankedScreen")}
+            >
               <View style={styles.icon}>
                 <Ionicons name="star-outline" style={styles.iconMain} />
               </View>
               <View style={styles.bottom}>
                 <Text style={styles.name}>Ranking</Text>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={styles.plate}>
               <View style={styles.icon}>
                 <Ionicons name="settings-outline" style={styles.iconMain} />
