@@ -35,6 +35,28 @@ export default function _layout() {
         name="MatchScreen/index"
         options={{ headerShown: false, statusBarColor: "#003279" }}
       />
+      <Stack.Screen
+        name="RankedScreen/index"
+        options={() => ({
+          title: "Ranking",
+          headerTitle: (props) => (
+            <View style={styles.header}>
+              <Image
+                style={styles.logo}
+                source={require("../../assets/EURO2024logo.png")}
+              />
+              <Text style={styles.title}>{props.children}</Text>
+            </View>
+          ),
+          headerBackground: () => (
+            <Image
+              style={styles.image}
+              source={require("../../assets/background.jpg")}
+            />
+          ),
+          statusBarColor: "#003279",
+        })}
+      />
     </Stack>
   );
 }
@@ -44,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    width: "90%",
+    width: "80%",
     height: 60,
     marginTop: 2,
   },
