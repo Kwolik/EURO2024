@@ -12,6 +12,15 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginLeft: 4,
   },
+  playerRanked: {
+    width: "86%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginLeft: "2%",
+    marginTop: 20,
+  },
 });
 
 export default styles;

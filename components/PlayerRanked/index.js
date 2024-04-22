@@ -2,11 +2,11 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import styles from "./styles.js";
 
-export default function PlayerRanked() {
+export default function PlayerRanked(props) {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text style={styles.position}>#4</Text>
+        <Text style={styles.position}>#{props.position}</Text>
         <Image
           style={styles.avatar}
           source={require("../../assets/EURO2024logo.png")}

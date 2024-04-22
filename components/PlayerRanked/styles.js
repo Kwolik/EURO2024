@@ -2,12 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "42%",
+    width: "46%",
     justifyContent: "center",
     alignItems: "center",
-
-    borderColor: "red",
-    borderWidth: 2,
+    marginBottom: 8,
   },
   top: {
     width: "100%",
@@ -19,15 +17,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 8,
     paddingRight: 8,
+    zIndex: 1,
   },
   position: {
     color: "#FFFFFF",
     fontSize: 18,
   },
   avatar: {
-    width: 42,
-    height: 42,
-    borderRadius: 42,
+    width: 40,
+    height: 40,
+    borderRadius: 40,
   },
   result: {
     color: "#FFFFFF",
@@ -41,7 +40,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     marginTop: -18,
-    zIndex: -1,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
   },
