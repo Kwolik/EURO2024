@@ -60,6 +60,30 @@ export default function _layout() {
           statusBarColor: "#003279",
         })}
       />
+      <Stack.Screen
+        name="SettingsScreen/index"
+        headerBackVisible={false}
+        options={() => ({
+          title: "Profil",
+          headerBackVisible: false,
+          headerTitle: (props) => (
+            <View style={styles.header}>
+              <Image
+                style={styles.logo}
+                source={require("../../assets/EURO2024logo.png")}
+              />
+              <Text style={styles.title}>{props.children}</Text>
+            </View>
+          ),
+          headerBackground: () => (
+            <Image
+              style={styles.image}
+              source={require("../../assets/background.jpg")}
+            />
+          ),
+          statusBarColor: "#003279",
+        })}
+      />
     </Stack>
   );
 }
