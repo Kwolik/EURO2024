@@ -53,14 +53,17 @@ export default function HomeScreen() {
                 <Text style={styles.name}>Ranking</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.plate}>
+            <TouchableOpacity
+              style={styles.plate}
+              onPress={() => router.navigate("/SettingsScreen")}
+            >
               <View style={styles.icon}>
                 <Ionicons name="settings-outline" style={styles.iconMain} />
               </View>
               <View style={styles.bottom}>
                 <Text style={styles.name}>Profil</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
           <View>
             <RowMatch />

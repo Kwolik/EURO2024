@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
 
     borderColor: "red",
     borderWidth: 2,
+    marginTop: 4,
+    marginBottom: 4,
   },
   top: {
     width: "100%",
