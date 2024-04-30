@@ -1,5 +1,5 @@
 import { View, ImageBackground, Text, Image, Alert } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
 import Foundation from "react-native-vector-icons/Foundation";
 import RowMatch from "../../../components/RowMatch/index.js";
@@ -7,12 +7,35 @@ import * as ImagePicker from "expo-image-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { storage } from "../../../firebaseConfig.js";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { auth } from "../../../firebaseConfig.js";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { auth, db } from "../../../firebaseConfig.js";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function MatchesScreen() {
-  const [image, setImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
+  const [points, setPoints] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [nameUser, setNameUser] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        //setId(user.uid);
+        console.log(user.uid);
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          docSnap.data().name && setNameUser(docSnap.data().name);
+          docSnap.data().photo && setPhoto(docSnap.data().photo);
+          docSnap.data().points && setPoints(docSnap.data().points);
+        } else {
+          setTextSnackbar("Nie znaleziono dokumentu"), setVisibleSnackbar(true);
+        }
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -23,34 +46,42 @@ export default function MatchesScreen() {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      uploadImage();
+      setPhoto(result.assets[0].uri);
     }
   };
 
   const uploadImage = async () => {
-    setUploading(true);
-    const response = await fetch(image);
+    const response = await fetch(photo);
     const blob = await response.blob();
-    const filename = auth.currentUser.uid; 
+    const filename = auth.currentUser.uid;
     const storageRef = ref(storage, filename);
 
-    //await put(storageRef, blob); nadpisywanie obrazka
-
     try {
-      await uploadBytes(storageRef, blob)
-      setUploading(false);
-      const downloadURL = await getDownloadURL(storageRef);
-      console.log(downloadURL)
-      setImage(downloadURL);
+      const snapshot = await uploadBytesResumable(storageRef, blob);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      console.log(downloadURL);
+      setPhoto(downloadURL);
     } catch (e) {
       console.log(e);
-      setUploading(false);
       Alert.alert("Error uploading photo");
     }
+
+    changeData();
+  };
+
+  const changeData = () => {
+    getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
+      if (docSnap.exists()) {
+        setDoc(doc(db, "users", auth.currentUser.uid), {
+          id: auth.currentUser.uid,
+          name: nameUser,
+          email: auth.currentUser.email,
+          photo: photo,
+          points: points,
+        });
+      }
+    });
   };
 
   return (
@@ -61,8 +92,8 @@ export default function MatchesScreen() {
       >
         <View style={styles.profile}>
           <TouchableOpacity onPress={() => pickImage()} style={styles.button}>
-            {image ? (
-              <Image style={styles.avatar} source={{ uri: image }} />
+            {photo ? (
+              <Image style={styles.avatar} source={{ uri: photo }} />
             ) : (
               <Image
                 style={styles.avatar}
@@ -72,17 +103,20 @@ export default function MatchesScreen() {
           </TouchableOpacity>
           <View style={styles.top}>
             <View style={styles.space}></View>
-            <Text style={styles.nick}>elPulokogftyd</Text>
+            <Text style={styles.nick}>{nameUser}</Text>
             <View style={styles.viewPoints}>
-              <Text style={styles.points}>42 </Text>
+              <Text style={styles.points}>{points} </Text>
               <Text style={styles.nick}>punkty</Text>
             </View>
           </View>
           <View style={styles.bottom}>
-            <View style={styles.viewBottom}>
+            <TouchableOpacity
+              style={styles.viewBottom}
+              onPress={() => uploadImage()}
+            >
               <Foundation name="pencil" style={styles.icon} />
               <Text style={styles.desc}>Edytuj swoje dane</Text>
-            </View>
+            </TouchableOpacity>
           </View>
           <Text style={styles.position}>#2</Text>
         </View>

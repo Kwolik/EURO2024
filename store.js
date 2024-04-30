@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthStore = new Store({
   isLoggedIn: false,
@@ -61,19 +61,12 @@ export const appSignUp = async (email, password, displayName) => {
       store.isLoggedIn = true;
     });
 
-    getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
-      if (docSnap.exists()) {
-        // console.log(user);
-        // console.log("Document data:", docSnap.data());
-      } else {
-        setDoc(doc(db, "users", auth.currentUser.uid), {
-          id: auth.currentUser.uid,
-          name: displayName,
-          email: auth.currentUser.email,
-          photo: "",
-          points: "0",
-        });
-      }
+    await setDoc(doc(db, "users", auth.currentUser.uid), {
+      id: auth.currentUser.uid,
+      name: displayName,
+      email: auth.currentUser.email,
+      photo: "",
+      points: "0",
     });
 
     return { user: auth.currentUser };
