@@ -1,4 +1,4 @@
-import { View, ImageBackground, Text, Image } from "react-native";
+import { View, ImageBackground, Text, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles.js";
 import Foundation from "react-native-vector-icons/Foundation";
@@ -6,9 +6,13 @@ import RowMatch from "../../../components/RowMatch/index.js";
 import * as ImagePicker from "expo-image-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { storage } from "../../../firebaseConfig.js";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { auth } from "../../../firebaseConfig.js";
 
 export default function MatchesScreen() {
   const [image, setImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -23,6 +27,29 @@ export default function MatchesScreen() {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      uploadImage();
+    }
+  };
+
+  const uploadImage = async () => {
+    setUploading(true);
+    const response = await fetch(image);
+    const blob = await response.blob();
+    const filename = auth.currentUser.uid; 
+    const storageRef = ref(storage, filename);
+
+    //await put(storageRef, blob); nadpisywanie obrazka
+
+    try {
+      await uploadBytes(storageRef, blob)
+      setUploading(false);
+      const downloadURL = await getDownloadURL(storageRef);
+      console.log(downloadURL)
+      setImage(downloadURL);
+    } catch (e) {
+      console.log(e);
+      setUploading(false);
+      Alert.alert("Error uploading photo");
     }
   };
 

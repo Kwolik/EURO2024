@@ -53,7 +53,7 @@ export const appSignUp = async (email, password, displayName) => {
   try {
     const resp = await createUserWithEmailAndPassword(auth, email, password);
 
-    await updateProfile(resp.user, {displayName});
+    await updateProfile(resp.user, { displayName });
 
     AuthStore.update((store) => {
       store.user = auth.currentUser;
