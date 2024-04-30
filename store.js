@@ -6,7 +6,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
 export const AuthStore = new Store({
   isLoggedIn: false,
@@ -53,12 +54,21 @@ export const appSignUp = async (email, password, displayName) => {
   try {
     const resp = await createUserWithEmailAndPassword(auth, email, password);
 
-    await updateProfile(resp.user, {displayName});
+    await updateProfile(resp.user, { displayName });
 
     AuthStore.update((store) => {
       store.user = auth.currentUser;
       store.isLoggedIn = true;
     });
+
+    await setDoc(doc(db, "users", auth.currentUser.uid), {
+      id: auth.currentUser.uid,
+      name: displayName,
+      email: auth.currentUser.email,
+      photo: "",
+      points: "0",
+    });
+
     return { user: auth.currentUser };
   } catch (e) {
     return { error: e };

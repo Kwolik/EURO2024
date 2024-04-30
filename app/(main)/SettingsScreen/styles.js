@@ -15,14 +15,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "90%",
   },
-  avatar: {
-    width: 56,
-    height: 56,
-    borderRadius: 56,
+  button: {
     position: "absolute",
     zIndex: 2,
     marginTop: 4,
     marginLeft: 8,
+  },
+  avatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 56,
   },
   top: {
     width: "100%",
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     paddingRight: 10,
-    zIndex: 1,
+    zIndex: -1,
   },
   space: {
     width: "24%",
@@ -63,6 +65,7 @@ const styles = StyleSheet.create({
     marginTop: -18,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
+    zIndex: -2,
   },
   viewBottom: {
     backgroundColor: "#003279",
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     flexDirection: "row",
+    zIndex: -2,
   },
   info1: {
     width: 100,
