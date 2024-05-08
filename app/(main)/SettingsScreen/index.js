@@ -29,10 +29,7 @@ export default function MatchesScreen() {
   const [champion, setChampion] = useState("");
   const [codeChampion, setCodeChampion] = useState("");
 
-  // ref
   const bottomSheetRef = useRef(BottomSheet);
-
-  // callbacks
   const handleSheetChanges = useCallback((index) => {
     console.log("handleSheetChanges", index);
   }, []);
@@ -40,10 +37,12 @@ export default function MatchesScreen() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        //setId(user.uid);
-        console.log(user.uid);
         const docRef = doc(db, "users", user.uid);
+        const docKing = doc(db, "king", user.uid);
+        const docFootballer = doc(db, "footballer", user.uid);
         const docSnap = await getDoc(docRef);
+        const docSnapKing = await getDoc(docKing);
+        const docSnapFootballer = await getDoc(docFootballer);
 
         if (docSnap.exists()) {
           docSnap.data().name && setNameUser(docSnap.data().name);
@@ -51,6 +50,16 @@ export default function MatchesScreen() {
           docSnap.data().points && setPoints(docSnap.data().points);
         } else {
           setTextSnackbar("Nie znaleziono dokumentu"), setVisibleSnackbar(true);
+        }
+
+        if (docSnapKing.exists()) {
+          docSnapKing.data().team && setChampion(docSnapKing.data().team);
+          docSnapKing.data().code && setCodeChampion(docSnapKing.data().code);
+        }
+
+        if (docSnapFootballer.exists()) {
+          docSnapFootballer.data().name &&
+            setKingFootballer(docSnapFootballer.data().name);
         }
       }
     });
