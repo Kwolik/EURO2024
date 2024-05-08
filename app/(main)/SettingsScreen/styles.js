@@ -10,10 +10,9 @@ const styles = StyleSheet.create({
   },
   profile: {
     borderColor: "red",
-    borderWidth: 2,
-
     marginTop: 20,
     width: "90%",
+    marginLeft: 1,
   },
   button: {
     position: "absolute",
