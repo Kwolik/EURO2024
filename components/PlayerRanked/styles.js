@@ -2,10 +2,12 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "46%",
+    width: "44%",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: 12,
+    marginLeft: 4,
+    marginRight: 4,
   },
   top: {
     width: "100%",

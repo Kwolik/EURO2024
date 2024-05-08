@@ -10,10 +10,9 @@ const styles = StyleSheet.create({
   },
   profile: {
     borderColor: "red",
-    borderWidth: 2,
-
     marginTop: 20,
     width: "90%",
+    marginLeft: 1,
   },
   button: {
     position: "absolute",
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     width: 160,
     fontSize: 14,
     fontWeight: "bold",
-    marginBottom: 2,
+    marginTop: 16,
   },
   bottomKing: {
     width: "100%",
@@ -134,9 +133,44 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginRight: 10,
     color: "#003279",
+    marginBottom: 2,
   },
   list: {
     marginTop: 20,
+  },
+  bottomSheet: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: "center",
+    height: "auto",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: 4,
+  },
+  viewTitle: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    color: "#003279",
+    fontSize: 16,
+  },
+  team: {
+    width: "30%",
+    backgroundColor: "#003279",
+    height: 30,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 4,
+  },
+  teamText: {
+    color: "#FFFFFF",
   },
 });
 
