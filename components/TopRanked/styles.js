@@ -5,14 +5,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "90%",
-
-    borderColor: "red",
-    borderWidth: 2,
   },
   top: {
     width: 100,
     justifyContent: "flex-end",
-    marginTop: 12, //uwaga
+    marginTop: 20,
+    zIndex: 1,
   },
   avatar: {
     width: 48,
@@ -34,18 +32,19 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   bottom: {
-    height: 30,
+    height: 34,
     backgroundColor: "#FFFFFF",
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: -12,
+    marginTop: -14,
     zIndex: -1,
   },
   points: {
     color: "#003279",
     fontWeight: "bold",
+    marginBottom: 2,
   },
   firstPlace: {
     backgroundColor: "#FDDA13",

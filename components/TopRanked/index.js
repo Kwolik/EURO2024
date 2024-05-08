@@ -1,44 +1,90 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
+import { db } from "../../firebaseConfig.js";
+import { orderBy, collection, query, limit, getDocs } from "firebase/firestore";
 
 export default function TopRanked() {
+  const [matches, setMatches] = useState([]);
+
+  const top3Players = async () => {
+    const todoRef = collection(db, "users");
+    const q = query(todoRef, orderBy("points", "desc"), limit(3));
+    const doc_refs = await getDocs(q);
+    const match = [];
+
+    doc_refs.forEach((doc) => {
+      match.push({
+        id: doc.id,
+        name: doc.data().name,
+        photo: doc.data().photo,
+        points: doc.data().points,
+      });
+    });
+    setMatches(match);
+  };
+
+  useEffect(() => {
+    top3Players();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.mainBackground}>
-          <Image
-            style={styles.avatar}
-            source={require("../../assets/EURO2024logo.png")}
-          />
-          <Text style={styles.nick}>Elpulokomvkjj</Text>
+          {matches[1] && matches[1].photo ? (
+            <Image style={styles.avatar} source={{ uri: matches[1].photo }} />
+          ) : (
+            <Image
+              style={styles.avatar}
+              source={require("../../assets/EURO2024logo.png")}
+            />
+          )}
+          <Text style={styles.nick}>{matches[1] && matches[1].name}</Text>
         </View>
         <View style={styles.bottom}>
-          <Text style={styles.points}>32 punktów</Text>
+          <Text style={styles.points}>
+            {matches[1] && matches[1].points} punktów
+          </Text>
         </View>
       </View>
       <View style={styles.top}>
         <View style={styles.firstPlace}>
-          <Image
-            style={styles.avatarFirst}
-            source={require("../../assets/EURO2024logo.png")}
-          />
-          <Text style={styles.nick}>Elpulokomvkjj</Text>
+          {matches[0] && matches[0].photo ? (
+            <Image
+              style={styles.avatarFirst}
+              source={{ uri: matches[0].photo }}
+            />
+          ) : (
+            <Image
+              style={styles.avatarFirst}
+              source={require("../../assets/EURO2024logo.png")}
+            />
+          )}
+          <Text style={styles.nick}>{matches[0] && matches[0].name}</Text>
         </View>
         <View style={styles.bottom}>
-          <Text style={styles.points}>35 punktów</Text>
+          <Text style={styles.points}>
+            {matches[0] && matches[0].points} punktów
+          </Text>
         </View>
       </View>
       <View style={styles.top}>
         <View style={[styles.mainBackground, styles.color3]}>
-          <Image
-            style={styles.avatar}
-            source={require("../../assets/EURO2024logo.png")}
-          />
-          <Text style={styles.nick}>Elpulokomvkjj</Text>
+          {matches[2] && matches[2].photo ? (
+            <Image style={styles.avatar} source={{ uri: matches[2].photo }} />
+          ) : (
+            <Image
+              style={styles.avatar}
+              source={require("../../assets/EURO2024logo.png")}
+            />
+          )}
+          <Text style={styles.nick}>{matches[2] && matches[2].name}</Text>
         </View>
         <View style={styles.bottom}>
-          <Text style={styles.points}>30 punktów</Text>
+          <Text style={styles.points}>
+            {matches[2] && matches[2].points} punktów
+          </Text>
         </View>
       </View>
     </View>
