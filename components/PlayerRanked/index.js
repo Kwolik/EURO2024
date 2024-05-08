@@ -4,18 +4,24 @@ import styles from "./styles.js";
 
 export default function PlayerRanked(props) {
   return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <Text style={styles.position}>#{props.position}</Text>
-        <Image
-          style={styles.avatar}
-          source={require("../../assets/EURO2024logo.png")}
-        ></Image>
-        <Text style={styles.result}>28 pkt</Text>
+    props.position > 3 && (
+      <View style={styles.container}>
+        <View style={styles.top}>
+          <Text style={styles.position}>{props.position}</Text>
+          {props.photo ? (
+            <Image style={styles.avatar} source={{ uri: props.photo }} />
+          ) : (
+            <Image
+              style={styles.avatar}
+              source={require("../../assets/EURO2024logo.png")}
+            />
+          )}
+          <Text style={styles.result}>{props.points} pkt</Text>
+        </View>
+        <View style={styles.bottom}>
+          <Text style={styles.nick}>{props.name}</Text>
+        </View>
       </View>
-      <View style={styles.bottom}>
-        <Text style={styles.nick}>elPulokohgflt</Text>
-      </View>
-    </View>
+    )
   );
 }
