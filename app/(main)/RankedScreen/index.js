@@ -1,11 +1,35 @@
 import { View, ImageBackground } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
 import TopRanked from "../../../components/TopRanked/index.js";
 import PlayerRanked from "../../../components/PlayerRanked/index.js";
+import { db } from "../../../firebaseConfig.js";
+import { orderBy, collection, query, getDocs } from "firebase/firestore";
 
 export default function RankedScreen() {
-  const players = [{ id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }, { id: 8 }];
+  const [matches, setMatches] = useState([]);
+
+  const topPlayers = async () => {
+    const todoRef = collection(db, "users");
+    const q = query(todoRef, orderBy("points", "desc"));
+    const doc_refs = await getDocs(q);
+    const match = [];
+
+    doc_refs.forEach((doc) => {
+      match.push({
+        id: doc.id,
+        name: doc.data().name,
+        photo: doc.data().photo,
+        points: doc.data().points,
+      });
+    });
+    setMatches(match);
+  };
+
+  useEffect(() => {
+    topPlayers();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -16,8 +40,14 @@ export default function RankedScreen() {
           <TopRanked />
         </View>
         <View style={styles.playerRanked}>
-          {players.map((player) => (
-            <PlayerRanked key={player.id} position={player.id} />
+          {matches.map((player, number) => (
+            <PlayerRanked
+              key={player.id}
+              position={number + 1}
+              points={player.points}
+              name={player.name}
+              photo={player.photo}
+            />
           ))}
         </View>
       </ImageBackground>
