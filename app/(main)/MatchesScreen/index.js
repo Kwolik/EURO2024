@@ -1,11 +1,40 @@
 import { View, ImageBackground, FlatList } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.js";
 import NextMatch from "../../../components/NextMatch/index.js";
 import RowMatch from "../../../components/RowMatch/index.js";
+import { db } from "../../../firebaseConfig.js";
+import { collection, getDocs } from "firebase/firestore";
 
 export default function MatchesScreen() {
-  const matches = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+  const [matches, setMatches] = useState([]);
+
+  const updateMachtes = async () => {
+    const todoRef = collection(db, "matches");
+    const doc_refs = await getDocs(todoRef);
+    const match = [];
+
+    doc_refs.forEach((doc) => {
+      match.push({
+        id: doc.id,
+        club1: doc.data().club1,
+        club1id: doc.data().club1id,
+        club2: doc.data().club2,
+        club2id: doc.data().club2id,
+        result: doc.data().result,
+        date: doc.data().date,
+        hour: doc.data().hour,
+      });
+    });
+    setMatches(match);
+  };
+
+  useEffect(() => {
+    updateMachtes();
+  }, []);
+
+  console.log(matches);
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -15,24 +44,22 @@ export default function MatchesScreen() {
         <View>
           <NextMatch />
         </View>
-        <View>
+        <View style={styles.flatlist}>
           <FlatList
             data={matches}
             numColumns={1}
-            // renderItem={({ item }) => (
-            //   <OneRowMatch
-            //     id={item.id}
-            //     club1={item.club1}
-            //     club1id={item.club1id}
-            //     club2={item.club2}
-            //     club2id={item.club2id}
-            //     date={item.date}
-            //     hour={item.hour}
-            //     result={item.result}
-            //     navigation={navigation}
-            //   />
-            // )}
-            renderItem={() => <RowMatch />}
+            renderItem={({ item }) => (
+              <RowMatch
+                id={item.id}
+                club1={item.club1}
+                club1id={item.club1id}
+                club2={item.club2}
+                club2id={item.club2id}
+                date={item.date}
+                hour={item.hour}
+                result={item.result}
+              />
+            )}
           />
         </View>
       </ImageBackground>
