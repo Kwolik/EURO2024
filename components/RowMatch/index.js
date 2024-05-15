@@ -17,9 +17,9 @@ export default function RowMatch(props) {
     >
       <View style={styles.top}>
         <Text style={styles.info}>{props.date}</Text>
-        <CountryFlag isoCode={props.club1id ? props.club1id : ""} size={32} />
+        <CountryFlag isoCode={props.club1id ? props.club1id : ""} size={28} />
         <Text style={styles.result}>{props.result}</Text>
-        <CountryFlag isoCode={props.club2id ? props.club2id : ""} size={32} />
+        <CountryFlag isoCode={props.club2id ? props.club2id : ""} size={28} />
         <Text style={styles.info}>{props.hour}</Text>
       </View>
       <View style={styles.bottom}>
