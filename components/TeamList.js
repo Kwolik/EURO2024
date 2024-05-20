@@ -1,6 +1,6 @@
 export const TeamList = [
   { value: "Albania", code: "al" },
-  { value: "Anglia", code: "en" },
+  { value: "Anglia", code: "GB-ENG" },
   { value: "Austria", code: "at" },
   { value: "Belgia", code: "be" },
   { value: "Chorwacja", code: "hr" },

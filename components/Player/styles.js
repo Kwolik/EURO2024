@@ -2,9 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "30%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: "28%",
+    margin: 10,
 
     borderColor: "red",
     borderWidth: 2,
@@ -36,13 +35,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   avatar: {
-    width: 32,
-    height: 32,
+    width: 36,
+    height: 36,
     borderRadius: 32,
   },
   result: {
     color: "#FFFFFF",
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "bold",
   },
   bottom: {

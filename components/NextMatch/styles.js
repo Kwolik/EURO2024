@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   flag: {
-    marginLeft: 12,
-    marginRight: 12,
+    marginLeft: 16,
+    marginRight: 16,
   },
   bottom: {
     height: 36,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     top: -12,
   },
   team: {
-    fontSize: 18, //sprawdzic czy nie zmniejszyc
+    fontSize: 16,
     color: "#003279",
     fontWeight: "bold",
     marginBottom: 2,

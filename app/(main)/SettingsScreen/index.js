@@ -28,6 +28,7 @@ export default function MatchesScreen() {
   const [kingFootballer, setKingFootballer] = useState("");
   const [champion, setChampion] = useState("");
   const [codeChampion, setCodeChampion] = useState("");
+  const [url, setUrl] = useState("");
 
   const bottomSheetRef = useRef(BottomSheet);
   const handleSheetChanges = useCallback((index) => {
@@ -81,6 +82,12 @@ export default function MatchesScreen() {
     }
   };
 
+  useEffect(() => {
+    if (url !== "") {
+      changeData();
+    }
+  }, [url]);
+
   const uploadImage = async () => {
     const response = await fetch(photo);
     const blob = await response.blob();
@@ -90,14 +97,11 @@ export default function MatchesScreen() {
     try {
       const snapshot = await uploadBytesResumable(storageRef, blob);
       const downloadURL = await getDownloadURL(snapshot.ref);
-      console.log(downloadURL);
-      setPhoto(downloadURL);
+      setUrl(downloadURL);
     } catch (e) {
       console.log(e);
       Alert.alert("Error uploading photo");
     }
-
-    changeData();
   };
 
   const changeData = () => {
@@ -107,7 +111,7 @@ export default function MatchesScreen() {
           id: auth.currentUser.uid,
           name: nameUser,
           email: auth.currentUser.email,
-          photo: photo,
+          photo: url,
           points: points,
         });
       }

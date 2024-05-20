@@ -66,7 +66,7 @@ export const appSignUp = async (email, password, displayName) => {
       name: displayName,
       email: auth.currentUser.email,
       photo: "",
-      points: "0",
+      points: 0,
     });
 
     return { user: auth.currentUser };
