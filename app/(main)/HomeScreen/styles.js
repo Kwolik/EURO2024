@@ -6,15 +6,13 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: "auto", //upewnic sie czy background dobrze sie skaluje
   },
   plates: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "90%",
-
-    borderColor: "red",
-    borderWidth: 2,
+    width: "88%",
+    marginLeft: 4,
+    marginTop: 10,
   },
   plate: {
     justifyContent: "center",
@@ -47,6 +45,15 @@ const styles = StyleSheet.create({
   name: {
     color: "#003279",
     fontWeight: "bold",
+  },
+  matches3: {
+    width: "88%",
+    marginLeft: 4,
+  },
+  kingFootballer: {
+    width: "88%",
+    marginLeft: 4,
+    marginBottom: "10%",
   },
 });
 
