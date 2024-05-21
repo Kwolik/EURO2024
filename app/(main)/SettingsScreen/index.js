@@ -124,6 +124,7 @@ export default function MatchesScreen() {
         id: auth.currentUser.uid,
         name: kingFootballer,
         photo: photo,
+        nameUser: nameUser,
       });
     }
   };
@@ -135,6 +136,7 @@ export default function MatchesScreen() {
         code: codeChampion,
         team: champion,
         photo: photo,
+        name: nameUser,
       });
     }
   };
@@ -144,6 +146,7 @@ export default function MatchesScreen() {
       <ImageBackground
         source={require("../../../assets/background.jpg")}
         style={styles.image}
+        resizeMode="stretch"
       >
         <View style={styles.profile}>
           <TouchableOpacity onPress={() => pickImage()} style={styles.button}>
