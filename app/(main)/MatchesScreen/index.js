@@ -40,6 +40,7 @@ export default function MatchesScreen() {
       <ImageBackground
         source={require("../../../assets/background.jpg")}
         style={styles.image}
+        resizeMode="stretch"
       >
         <View>
           <NextMatch />
