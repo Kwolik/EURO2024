@@ -28,49 +28,56 @@ export default function RowMatch(props) {
   }, []);
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() =>
-        router.navigate({ pathname: "/MatchScreen", params: { id: id } })
-      }
-    >
-      {props.points >= 0 && (
-        <MaterialCommunityIcons name="cards" style={styles.icon} />
-      )}
-      {props.points >= 0 && <Text style={styles.points}>{props.points}</Text>}
-      <View style={styles.top}>
-        <Text style={styles.info}>{props.date ? props.date : match.date}</Text>
-        <CountryFlag
-          isoCode={
-            props.club1id
-              ? props.club1id
-              : match && match.club1id
-              ? match.club1id
-              : ""
-          }
-          size={28}
-        />
-        <Text style={styles.result}>
-          {props.result ? props.result : match.result}
-        </Text>
-        <CountryFlag
-          isoCode={
-            props.club2id
-              ? props.club2id
-              : match && match.club2id
-              ? match.club2id
-              : ""
-          }
-          size={28}
-        />
-        <Text style={styles.info}>{props.hour ? props.hour : match.hour}</Text>
-      </View>
-      <View style={styles.bottom}>
-        <Text style={styles.teams}>
-          {props.club1 ? props.club1 : match.club1} -{" "}
-          {props.club2 ? props.club2 : match.club2}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    props.club1 != "" &&
+    props.club2 != "" && (
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() =>
+          router.navigate({ pathname: "/MatchScreen", params: { id: id } })
+        }
+      >
+        {props.points >= 0 && (
+          <MaterialCommunityIcons name="cards" style={styles.icon} />
+        )}
+        {props.points >= 0 && <Text style={styles.points}>{props.points}</Text>}
+        <View style={styles.top}>
+          <Text style={styles.info}>
+            {props.date ? props.date : match.date}
+          </Text>
+          <CountryFlag
+            isoCode={
+              props.club1id
+                ? props.club1id
+                : match && match.club1id
+                ? match.club1id
+                : ""
+            }
+            size={28}
+          />
+          <Text style={styles.result}>
+            {props.result ? props.result : match.result}
+          </Text>
+          <CountryFlag
+            isoCode={
+              props.club2id
+                ? props.club2id
+                : match && match.club2id
+                ? match.club2id
+                : ""
+            }
+            size={28}
+          />
+          <Text style={styles.info}>
+            {props.hour ? props.hour : match.hour}
+          </Text>
+        </View>
+        <View style={styles.bottom}>
+          <Text style={styles.teams}>
+            {props.club1 ? props.club1 : match.club1} -{" "}
+            {props.club2 ? props.club2 : match.club2}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    )
   );
 }

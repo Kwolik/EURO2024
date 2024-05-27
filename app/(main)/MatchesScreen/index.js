@@ -40,7 +40,7 @@ export default function MatchesScreen() {
         style={styles.image}
         resizeMode="stretch"
       >
-        <View>
+        <View style={styles.matchNext}>
           <NextMatch />
         </View>
         <View style={styles.flatlist}>
