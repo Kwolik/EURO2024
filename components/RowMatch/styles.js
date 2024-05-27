@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 4,
-    marginBottom: 4,
+    marginTop: 20,
   },
   top: {
     width: "100%",
@@ -18,6 +17,21 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  icon: {
+    fontSize: 34,
+    color: "green", //na zoltej kartce nei widac tekstu dostosowac pozniej
+    position: "absolute",
+    top: -22,
+    left: -2,
+  },
+  points: {
+    position: "absolute",
+    top: -18,
+    left: 8,
+    color: "#FFFFFF",
+    transform: [{ rotate: "-20deg" }],
+    fontSize: 16,
   },
   info: {
     color: "#FFFFFF",
