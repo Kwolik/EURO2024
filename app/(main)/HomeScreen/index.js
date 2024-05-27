@@ -72,10 +72,10 @@ export default function HomeScreen() {
         resizeMode="stretch"
       >
         <ScrollView>
-          <View>
+          <View style={styles.nextMatch}>
             <NextMatch />
           </View>
-          <View>
+          <View style={{ marginLeft: 2 }}>
             <TopRanked />
           </View>
           <View style={styles.plates}>

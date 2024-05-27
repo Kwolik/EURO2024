@@ -33,8 +33,6 @@ export default function MatchesScreen() {
     updateMachtes();
   }, []);
 
-  console.log(matches);
-
   return (
     <View style={styles.container}>
       <ImageBackground
