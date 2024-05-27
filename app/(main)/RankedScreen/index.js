@@ -35,6 +35,7 @@ export default function RankedScreen() {
       <ImageBackground
         source={require("../../../assets/background.jpg")}
         style={styles.image}
+        resizeMode="stretch"
       >
         <View style={styles.topRanked}>
           <TopRanked />

@@ -2,12 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-
-    borderColor: "red",
-    borderWidth: 2,
+    marginTop: 10,
   },
   top: {
     width: "100%",
@@ -17,6 +15,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 20,
     paddingLeft: 24,
+    zIndex: 2,
     paddingRight: 10,
   },
   team: {
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "#FFFFFF",
     marginTop: -18,
-    zIndex: -1,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     flexDirection: "row",

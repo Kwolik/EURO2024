@@ -33,15 +33,14 @@ export default function MatchesScreen() {
     updateMachtes();
   }, []);
 
-  console.log(matches);
-
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require("../../../assets/background.jpg")}
         style={styles.image}
+        resizeMode="stretch"
       >
-        <View>
+        <View style={styles.matchNext}>
           <NextMatch />
         </View>
         <View style={styles.flatlist}>

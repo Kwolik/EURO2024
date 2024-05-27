@@ -1,15 +1,17 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import CountryFlag from "react-native-country-flag";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { db } from "../../firebaseConfig";
 import { collection, getDocs, where, limit, query } from "firebase/firestore";
+import { useRouter } from "expo-router";
 
 export default function NextMatch() {
   const [match, setMatch] = useState([]);
   const [date, setDate] = useState("");
-  const [time, setTime] = useState(15 * 60); // 15 minut w sekundach - poprawić pozniej 
+  const [time, setTime] = useState(15 * 60); // 15 minut w sekundach - poprawić pozniej
+  const router = useRouter();
 
   var day = new Date().getDate(); //Current Date
   if (day < 10) day = "0" + day;
@@ -60,7 +62,15 @@ export default function NextMatch() {
 
   return (
     match[0] && (
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() =>
+          router.navigate({
+            pathname: "/MatchScreen",
+            params: { id: match[0].id },
+          })
+        }
+      >
         <View style={styles.top}>
           <View style={styles.row}>
             <Ionicons name="football-outline" style={styles.icon} />
@@ -90,7 +100,7 @@ export default function NextMatch() {
             {match[0].club1} - {match[0].club2}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   );
 }
