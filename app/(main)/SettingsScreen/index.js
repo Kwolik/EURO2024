@@ -7,6 +7,7 @@ import {
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./styles.js";
@@ -17,7 +18,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { storage } from "../../../firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { auth, db } from "../../../firebaseConfig.js";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { TeamList } from "../../../components/TeamList.js";
 
@@ -29,6 +30,7 @@ export default function MatchesScreen() {
   const [champion, setChampion] = useState("");
   const [codeChampion, setCodeChampion] = useState("");
   const [url, setUrl] = useState("");
+  const [matches, setMatches] = useState([]);
 
   const bottomSheetRef = useRef(BottomSheet);
   const handleSheetChanges = useCallback((index) => {
@@ -44,6 +46,20 @@ export default function MatchesScreen() {
         const docSnap = await getDoc(docRef);
         const docSnapKing = await getDoc(docKing);
         const docSnapFootballer = await getDoc(docFootballer);
+
+        const todoRef = collection(db, "users", user.uid, "types");
+        const doc_refs = await getDocs(todoRef);
+        const match = [];
+
+        doc_refs.forEach((doc) => {
+          match.push({
+            id: doc.id,
+            points: doc.data().points,
+            type: doc.data().type,
+            winner: doc.data().winner,
+          });
+        });
+        setMatches(match);
 
         if (docSnap.exists()) {
           docSnap.data().name && setNameUser(docSnap.data().name);
@@ -211,11 +227,22 @@ export default function MatchesScreen() {
           </View>
         </View>
 
-        <View style={styles.list}>
-          <RowMatch />
-          <RowMatch />
-          <RowMatch />
-        </View>
+        {matches && matches[0] && (
+          <View style={styles.flatlist}>
+            <FlatList
+              data={matches}
+              numColumns={1}
+              renderItem={({ item }) => (
+                <RowMatch
+                  id={item.id}
+                  type={item.type}
+                  points={item.points}
+                  winner={item.winenr}
+                />
+              )}
+            />
+          </View>
+        )}
 
         <SafeAreaView style={styles.bottomSheet}>
           <BottomSheet

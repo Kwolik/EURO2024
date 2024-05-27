@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   profile: {
     borderColor: "red",
     marginTop: 20,
-    width: "90%",
-    marginLeft: 1,
+    width: "88%",
+    marginLeft: 4,
   },
   button: {
     position: "absolute",
@@ -135,8 +135,11 @@ const styles = StyleSheet.create({
     color: "#003279",
     marginBottom: 2,
   },
-  list: {
+  flatlist: {
     marginTop: 20,
+    width: "88%",
+    marginLeft: 4,
+    paddingBottom: 4,
   },
   bottomSheet: {
     flex: 1,
