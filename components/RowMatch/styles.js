@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 34,
-    color: "green", //na zoltej kartce nei widac tekstu dostosowac pozniej
     position: "absolute",
     top: -22,
     left: -2,
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -18,
     left: 8,
-    color: "#FFFFFF",
     transform: [{ rotate: "-20deg" }],
     fontSize: 16,
   },

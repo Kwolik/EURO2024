@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
 import { db } from "../../firebaseConfig.js";
 import { orderBy, collection, query, limit, getDocs } from "firebase/firestore";
+import LoadingScreen from "../LoadingScreen/index.js";
 
 export default function TopRanked() {
   const [matches, setMatches] = useState([]);
@@ -28,7 +29,7 @@ export default function TopRanked() {
     top3Players();
   }, []);
 
-  return (
+  return matches[0] ? (
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.mainBackground}>
@@ -88,5 +89,7 @@ export default function TopRanked() {
         </View>
       </View>
     </View>
+  ) : (
+    <LoadingScreen />
   );
 }

@@ -1,6 +1,15 @@
 import React from "react";
-import { Stack } from "expo-router";
-import { Image, View, StyleSheet, Text } from "react-native";
+import { Stack, router } from "expo-router";
+import {
+  Image,
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { appSignOut } from "../../store";
 
 export default function _layout() {
   return (
@@ -24,9 +33,10 @@ export default function _layout() {
             </View>
           ),
           headerBackground: () => (
-            <Image
+            <ImageBackground
               style={styles.image}
               source={require("../../assets/background.jpg")}
+              resizeMode="cover"
             />
           ),
           statusBarColor: "#003279",
@@ -52,9 +62,10 @@ export default function _layout() {
             </View>
           ),
           headerBackground: () => (
-            <Image
+            <ImageBackground
               style={styles.image}
               source={require("../../assets/background.jpg")}
+              resizeMode="cover"
             />
           ),
           statusBarColor: "#003279",
@@ -73,12 +84,23 @@ export default function _layout() {
                 source={require("../../assets/EURO2024logo.png")}
               />
               <Text style={styles.title}>{props.children}</Text>
+              <TouchableOpacity
+                onPress={async () => {
+                  const resp = await appSignOut();
+                  if (!resp?.error) {
+                    router.replace("/(auth)/LoginScreen");
+                  }
+                }}
+              >
+                <MaterialCommunityIcons name="logout" style={styles.iconMain} />
+              </TouchableOpacity>
             </View>
           ),
           headerBackground: () => (
-            <Image
+            <ImageBackground
               style={styles.image}
               source={require("../../assets/background.jpg")}
+              resizeMode="cover"
             />
           ),
           statusBarColor: "#003279",
@@ -115,7 +137,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: "cover",
-    width: "100%",
+  },
+  iconMain: {
+    fontSize: 32,
+    color: "#FFFFFF",
+    marginLeft: 12,
   },
 });

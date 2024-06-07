@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     marginTop: -18,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
+    paddingLeft: 10,
+    paddingRight: 10,
     flexDirection: "row",
     zIndex: -2,
   },
@@ -123,7 +125,6 @@ const styles = StyleSheet.create({
   },
   info2: {
     width: 100,
-    marginLeft: 10,
     color: "#003279",
     fontSize: 14,
     marginBottom: 2,
@@ -131,19 +132,21 @@ const styles = StyleSheet.create({
   icon1: { fontSize: 20, color: "#FFFFFF" },
   icon2: {
     fontSize: 20,
-    marginRight: 10,
     color: "#003279",
     marginBottom: 2,
   },
   flatlist: {
-    marginTop: 20,
+    marginTop: 180,
     width: "88%",
     marginLeft: 4,
     paddingBottom: 4,
+    position: "absolute",
+    height: "60%",
   },
   bottomSheet: {
     flex: 1,
     justifyContent: "center",
+    marginTop: 4,
   },
   contentContainer: {
     flex: 1,

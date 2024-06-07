@@ -2,11 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "28%",
+    width: 100,
     margin: 10,
-
-    borderColor: "red",
-    borderWidth: 2,
   },
   top: {
     width: "100%",
@@ -21,7 +18,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 34,
-    color: "green", //na zoltej kartce nei widac tekstu dostosowac pozniej
     position: "absolute",
     top: -14,
     left: 4,
@@ -30,7 +26,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -11,
     left: 12,
-    color: "#FFFFFF",
     transform: [{ rotate: "-20deg" }],
     fontSize: 16,
   },

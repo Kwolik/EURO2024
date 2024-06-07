@@ -10,7 +10,6 @@ import { useRouter } from "expo-router";
 export default function NextMatch() {
   const [match, setMatch] = useState([]);
   const [date, setDate] = useState("");
-  const [time, setTime] = useState(15 * 60); // 15 minut w sekundach - poprawić pozniej
   const router = useRouter();
 
   var day = new Date().getDate(); //Current Date
@@ -20,6 +19,9 @@ export default function NextMatch() {
   var hours = new Date().getHours(); //Current Hours
   if (hours < 10) hours = "0" + hours;
   var min = new Date().getMinutes(); //Current Minutes
+  var sec = new Date().getSeconds(); //Current Minutes
+
+  const [time, setTime] = useState((60 - min) * 60 + (60 - sec));
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -60,8 +62,12 @@ export default function NextMatch() {
     return () => clearTimeout(timer);
   }, [time]);
 
+  //Przetestować jutro tego ifa
   return (
-    match[0] && (
+    match[0] &&
+    match[0].date == day + "." + month &&
+    match[0].hour == hours + 1 + ":00" &&
+    min >= 45 && (
       <TouchableOpacity
         style={styles.container}
         onPress={() =>
