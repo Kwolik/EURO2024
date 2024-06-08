@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
 import { db } from "../../firebaseConfig.js";
 import { collection, onSnapshot } from "firebase/firestore";
+import LoadingScreen from "../LoadingScreen/index.js";
 
 export default function KingFootballerRow() {
   const [footballer, setFootballer] = useState([]);
@@ -57,8 +58,6 @@ export default function KingFootballerRow() {
       </View>
     ))
   ) : (
-    <View>
-      <Text>Poczekaj chwile</Text>
-    </View>
+    <LoadingScreen />
   );
 }

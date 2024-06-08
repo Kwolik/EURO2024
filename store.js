@@ -15,7 +15,7 @@ export const AuthStore = new Store({
   user: null,
 });
 
-const unsub = onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) => {
   console.log("onAuthStateChange ", user);
   AuthStore.update((store) => {
     store.user = user;

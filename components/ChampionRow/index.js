@@ -5,6 +5,7 @@ import CountryFlag from "react-native-country-flag";
 import { db } from "../../firebaseConfig.js";
 import { collection, onSnapshot } from "firebase/firestore";
 import { TeamList } from "../TeamList.js";
+import LoadingScreen from "../LoadingScreen/index.js";
 
 export default function ChampionRow() {
   const [king, setKing] = useState([]);
@@ -62,8 +63,6 @@ export default function ChampionRow() {
       </View>
     ))
   ) : (
-    <View>
-      <Text>Poczekaj chwile</Text>
-    </View>
+    <LoadingScreen />
   );
 }

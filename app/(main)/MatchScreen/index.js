@@ -14,11 +14,18 @@ import {
 } from "firebase/firestore";
 import { useRoute } from "@react-navigation/native";
 import TypeResult from "../../../components/TypeResult/index.js";
+import LoadingScreen from "../../../components/LoadingScreen/index.js";
 
 export default function MatchScreen() {
   const [match, setMatch] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const route = useRoute();
+
+  var day = new Date().getDate(); //Current Date
+  if (day < 10) day = "0" + day;
+  var month = new Date().getMonth() + 1; //Current Month
+  var hours = new Date().getHours(); //Current Hours
+  var min = new Date().getMinutes(); //Current Minutes
 
   const updateMachtes = async () => {
     const todoRef = doc(db, "matches", route.params.id);
@@ -51,7 +58,7 @@ export default function MatchScreen() {
     users();
   }, []);
 
-  return (
+  return match && match.club1 ? (
     <View style={styles.container}>
       <ImageBackground
         source={require("../../../assets/backgroundMatch.jpg")}
@@ -98,15 +105,27 @@ export default function MatchScreen() {
             )}
           />
         </View>
-        <TypeResult
-          club1={match.club1}
-          club1id={match.club1id}
-          club2={match.club2}
-          club2id={match.club2id}
-          matchid={route.params.id}
-          type={match.typeMatch}
-        />
+        {day + "." + month < match.date ||
+        (day + "." + month == match.date && hours + ":" + min <= match.hour) ? (
+          <TypeResult
+            club1={match.club1}
+            club1id={match.club1id}
+            club2={match.club2}
+            club2id={match.club2id}
+            matchid={route.params.id}
+            type={match.typeMatch}
+          />
+        ) : (
+          <View></View>
+        )}
       </ImageBackground>
     </View>
+  ) : (
+    <ImageBackground
+      source={require("../../../assets/backgroundMatch.jpg")}
+      style={styles.image}
+    >
+      <LoadingScreen />
+    </ImageBackground>
   );
 }

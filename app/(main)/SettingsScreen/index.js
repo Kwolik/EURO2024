@@ -21,6 +21,8 @@ import { auth, db } from "../../../firebaseConfig.js";
 import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { TeamList } from "../../../components/TeamList.js";
+import LoadingScreen from "../../../components/LoadingScreen/index.js";
+import { Snackbar } from "react-native-paper";
 
 export default function MatchesScreen() {
   const [points, setPoints] = useState("");
@@ -31,6 +33,14 @@ export default function MatchesScreen() {
   const [codeChampion, setCodeChampion] = useState("");
   const [url, setUrl] = useState("");
   const [matches, setMatches] = useState([]);
+  const [visible, setVisible] = React.useState(false);
+  const onDismissSnackBar = () => setVisible(false);
+
+  var day = new Date().getDate(); //Current Date
+  if (day < 10) day = "0" + day;
+  var month = new Date().getMonth() + 1; //Current Month
+  var hours = new Date().getHours(); //Current Hours
+  var min = new Date().getMinutes(); //Current Minutes
 
   const bottomSheetRef = useRef(BottomSheet);
   const handleSheetChanges = useCallback((index) => {
@@ -136,6 +146,7 @@ export default function MatchesScreen() {
 
   const betFootballer = () => {
     if (kingFootballer != "") {
+      setVisible(!visible);
       setDoc(doc(db, "footballer", auth.currentUser.uid), {
         id: auth.currentUser.uid,
         name: kingFootballer,
@@ -147,6 +158,7 @@ export default function MatchesScreen() {
 
   const betKing = () => {
     if (champion != "") {
+      setVisible(!visible);
       setDoc(doc(db, "king", auth.currentUser.uid), {
         id: auth.currentUser.uid,
         code: codeChampion,
@@ -164,69 +176,93 @@ export default function MatchesScreen() {
         style={styles.image}
         resizeMode="stretch"
       >
-        <View style={styles.profile}>
-          <TouchableOpacity onPress={() => pickImage()} style={styles.button}>
-            {photo ? (
-              <Image style={styles.avatar} source={{ uri: photo }} />
-            ) : (
-              <Image
-                style={styles.avatar}
-                source={require("../../../assets/EURO2024logo.png")}
-              />
-            )}
-          </TouchableOpacity>
-          <View style={styles.top}>
-            <View style={styles.space}></View>
-            <TextInput
-              style={styles.nick}
-              onChangeText={setNameUser}
-              value={nameUser}
-              maxLength={12}
-              autoComplete="username"
-              keyboardType="default"
-              textContentType="nickname"
-            ></TextInput>
-            <View style={styles.viewPoints}>
-              <Text style={styles.points}>{points} </Text>
-              <Text style={styles.nick}>punkty</Text>
+        {nameUser ? (
+          <View style={styles.profile}>
+            <TouchableOpacity onPress={() => pickImage()} style={styles.button}>
+              {photo ? (
+                <Image style={styles.avatar} source={{ uri: photo }} />
+              ) : (
+                <Image
+                  style={styles.avatar}
+                  source={require("../../../assets/EURO2024logo.png")}
+                />
+              )}
+            </TouchableOpacity>
+            <View style={styles.top}>
+              <View style={styles.space}></View>
+              <TextInput
+                style={styles.nick}
+                onChangeText={setNameUser}
+                value={nameUser}
+                maxLength={12}
+                autoComplete="username"
+                keyboardType="default"
+                textContentType="nickname"
+              ></TextInput>
+              <View style={styles.viewPoints}>
+                <Text style={styles.points}>{points} </Text>
+                <Text style={styles.nick}>punkty</Text>
+              </View>
+            </View>
+            <View style={styles.bottom}>
+              <TouchableOpacity
+                style={styles.viewBottom}
+                onPress={() => {
+                  uploadImage(), setVisible(!visible);
+                }}
+              >
+                <Foundation name="pencil" style={styles.icon} />
+                <Text style={styles.desc}>Edytuj swoje dane</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.position}>#2</Text>
+          </View>
+        ) : (
+          <LoadingScreen />
+        )}
+        {nameUser ? (
+          <View style={styles.profile}>
+            <View style={styles.top}>
+              <Text style={styles.info1}>Mistrz</Text>
+              <Text style={styles.type1}>{champion}</Text>
+              {day + "." + month < "14.06" ||
+              (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+                <TouchableOpacity onPress={() => betKing()}>
+                  <Foundation name="pencil" style={styles.icon1} />
+                </TouchableOpacity>
+              ) : (
+                <View></View>
+              )}
+            </View>
+            <View style={styles.bottomKing}>
+              <Text style={styles.info2}>Król strzelców</Text>
+              <TextInput
+                style={styles.type2}
+                onChangeText={setKingFootballer}
+                value={kingFootballer}
+                autoComplete="name"
+                keyboardType="default"
+                textContentType="name"
+                editable={
+                  day + "." + month < "14.06" ||
+                  (day + "." + month == "14.06" && hours + ":" + min <= "21:00")
+                    ? true
+                    : false
+                } //lol
+              ></TextInput>
+              {day + "." + month < "14.06" ||
+              (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+                <TouchableOpacity onPress={() => betFootballer()}>
+                  <Foundation name="pencil" style={styles.icon2} />
+                </TouchableOpacity>
+              ) : (
+                <View></View>
+              )}
             </View>
           </View>
-          <View style={styles.bottom}>
-            <TouchableOpacity
-              style={styles.viewBottom}
-              onPress={() => uploadImage()}
-            >
-              <Foundation name="pencil" style={styles.icon} />
-              <Text style={styles.desc}>Edytuj swoje dane</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.position}>#2</Text>
-        </View>
-
-        <View style={styles.profile}>
-          <View style={styles.top}>
-            <Text style={styles.info1}>Mistrz</Text>
-            <Text style={styles.type1}>{champion}</Text>
-            <TouchableOpacity onPress={() => betKing()}>
-              <Foundation name="pencil" style={styles.icon1} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.bottomKing}>
-            <Text style={styles.info2}>Król strzelców</Text>
-            <TextInput
-              style={styles.type2}
-              onChangeText={setKingFootballer}
-              value={kingFootballer}
-              autoComplete="name"
-              keyboardType="default"
-              textContentType="name"
-            ></TextInput>
-            <TouchableOpacity onPress={() => betFootballer()}>
-              <Foundation name="pencil" style={styles.icon2} />
-            </TouchableOpacity>
-          </View>
-        </View>
-
+        ) : (
+          <LoadingScreen />
+        )}
         {matches && matches[0] && (
           <View style={styles.flatlist}>
             <FlatList
@@ -243,31 +279,48 @@ export default function MatchesScreen() {
             />
           </View>
         )}
-
-        <SafeAreaView style={styles.bottomSheet}>
-          <BottomSheet
-            ref={bottomSheetRef}
-            onChange={handleSheetChanges}
-            snapPoints={["10%", "60%", "100%"]}
-          >
-            <BottomSheetView style={styles.contentContainer}>
-              <View style={styles.viewTitle}>
-                <Text style={styles.title}>Obstaw mistrza 🎉</Text>
-              </View>
-              {TeamList.map((team, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.team}
-                  onPress={() => {
-                    setChampion(team.value), setCodeChampion(team.code);
-                  }}
-                >
-                  <Text style={styles.teamText}>{team.value}</Text>
-                </TouchableOpacity>
-              ))}
-            </BottomSheetView>
-          </BottomSheet>
-        </SafeAreaView>
+        {day + "." + month < "14.06" ||
+        (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+          <SafeAreaView style={styles.bottomSheet}>
+            <BottomSheet
+              ref={bottomSheetRef}
+              onChange={handleSheetChanges}
+              snapPoints={["5%", "60%", "100%"]}
+            >
+              <BottomSheetView style={styles.contentContainer}>
+                <View style={styles.viewTitle}>
+                  <Text style={styles.title}>Obstaw mistrza 🎉</Text>
+                </View>
+                {TeamList.map((team, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.team}
+                    onPress={() => {
+                      setChampion(team.value), setCodeChampion(team.code);
+                    }}
+                  >
+                    <Text style={styles.teamText}>{team.value}</Text>
+                  </TouchableOpacity>
+                ))}
+              </BottomSheetView>
+            </BottomSheet>
+          </SafeAreaView>
+        ) : (
+          <View></View>
+        )}
+        <Snackbar
+          visible={visible}
+          style={{ backgroundColor: "#003279" }}
+          onDismiss={onDismissSnackBar}
+          action={{
+            label: "Undo",
+            onPress: () => {
+              onDismissSnackBar;
+            },
+          }}
+        >
+          Poprawnie zmieniono dane
+        </Snackbar>
       </ImageBackground>
     </GestureHandlerRootView>
   );

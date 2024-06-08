@@ -5,6 +5,7 @@ import TopRanked from "../../../components/TopRanked/index.js";
 import PlayerRanked from "../../../components/PlayerRanked/index.js";
 import { db } from "../../../firebaseConfig.js";
 import { orderBy, collection, query, getDocs } from "firebase/firestore";
+import LoadingScreen from "../../../components/LoadingScreen/index.js";
 
 export default function RankedScreen() {
   const [matches, setMatches] = useState([]);
@@ -40,17 +41,21 @@ export default function RankedScreen() {
         <View style={styles.topRanked}>
           <TopRanked />
         </View>
-        <View style={styles.playerRanked}>
-          {matches.map((player, number) => (
-            <PlayerRanked
-              key={player.id}
-              position={number + 1}
-              points={player.points}
-              name={player.name}
-              photo={player.photo}
-            />
-          ))}
-        </View>
+        {matches[0] ? (
+          <View style={styles.playerRanked}>
+            {matches.map((player, number) => (
+              <PlayerRanked
+                key={player.id}
+                position={number + 1}
+                points={player.points}
+                name={player.name}
+                photo={player.photo}
+              />
+            ))}
+          </View>
+        ) : (
+          <LoadingScreen />
+        )}
       </ImageBackground>
     </View>
   );

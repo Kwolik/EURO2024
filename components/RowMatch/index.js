@@ -36,10 +36,33 @@ export default function RowMatch(props) {
           router.navigate({ pathname: "/MatchScreen", params: { id: id } })
         }
       >
-        {props.points >= 0 && (
-          <MaterialCommunityIcons name="cards" style={styles.icon} />
+        {props.points > -1 && (
+          <MaterialCommunityIcons
+            name="cards"
+            style={[
+              styles.icon,
+              props.points == 0
+                ? { color: "#ed1c24" }
+                : props.points == 1 || props.points == 2
+                ? { color: "#fdee00" }
+                : { color: "#00c165" },
+            ]}
+          />
         )}
-        {props.points >= 0 && <Text style={styles.points}>{props.points}</Text>}
+        {props.points > -1 && (
+          <Text
+            style={[
+              styles.points,
+              props.points == 0
+                ? { color: "#FFFFFF" }
+                : props.points == 1 || props.points == 2
+                ? { color: "#000000" }
+                : { color: "#FFFFFF" },
+            ]}
+          >
+            {props.points}
+          </Text>
+        )}
         <View style={styles.top}>
           <Text style={styles.info}>
             {props.date ? props.date : match.date}

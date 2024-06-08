@@ -1,10 +1,8 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import React from "react";
-//import LoginScreen from "./(auth)/LoginScreen";
 import { AuthStore } from "../store";
 import { useRouter, useSegments, useRootNavigationState } from "expo-router";
-
-//Upewnic sie co do status bara
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Page() {
   const segments = useSegments();
@@ -26,13 +24,22 @@ export default function Page() {
   }, [segments, navigationState?.key, initialized]);
   return (
     <View style={styles.container}>
-      <Text>LOADING...</Text>
+      <ImageBackground
+        source={require("../assets/background.jpg")}
+        style={styles.image}
+        resizeMode="stretch"
+      >
+        <LoadingScreen />
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  image: {
     flex: 1,
   },
 });

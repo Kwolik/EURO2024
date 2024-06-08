@@ -8,6 +8,7 @@ import { FlatList } from "react-native-gesture-handler"; //Jedyne flatlist ktore
 import CountryFlag from "react-native-country-flag";
 import { db, auth } from "../../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { Snackbar } from "react-native-paper";
 
 export default function TypeResult(props) {
   // ref
@@ -20,20 +21,24 @@ export default function TypeResult(props) {
 
   const value = [0, 1, 2];
   const [result, setResult] = useState("");
+  const [visible, setVisible] = React.useState(false);
+  const onDismissSnackBar = () => setVisible(false);
 
   const typeScore = (result) => {
     setResult("");
+    setVisible(true);
     setDoc(doc(db, "users", auth.currentUser.uid, "types", props.matchid), {
       type: result,
-      points: 0,
+      points: -1,
       winner: "",
     });
   };
 
   const typeScore1 = (win) => {
+    setVisible(true);
     setDoc(doc(db, "users", auth.currentUser.uid, "types", props.matchid), {
       type: result,
-      points: 0,
+      points: -1,
       winner: win,
     });
   };
@@ -108,6 +113,18 @@ export default function TypeResult(props) {
           </BottomSheetView>
         </BottomSheet>
       </SafeAreaView>
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: "Undo",
+          onPress: () => {
+            onDismissSnackBar;
+          },
+        }}
+      >
+        Poprawnie obstawiono mecz
+      </Snackbar>
     </GestureHandlerRootView>
   );
 }

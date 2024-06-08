@@ -19,27 +19,55 @@ export default function Player(props) {
         console.log("No such document!");
       }
     });
-    
+
     return () => unsubscribe();
   }, [props.matchid]);
   return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <MaterialCommunityIcons name="cards" style={styles.icon} />
-        <Text style={styles.points}>{data && data.points}</Text>
-        {props.photo ? (
-          <Image style={styles.avatar} source={{ uri: props.photo }} />
-        ) : (
-          <Image
-            style={styles.avatar}
-            source={require("../../assets/EURO2024logo.png")}
-          />
-        )}
-        <Text style={styles.result}>{data && data.type}</Text>
+    data &&
+    data.type && (
+      <View style={styles.container}>
+        <View style={styles.top}>
+          {data && data.points != -1 && (
+            <MaterialCommunityIcons
+              name="cards"
+              style={[
+                styles.icon,
+                data.points == 0
+                  ? { color: "#ed1c24" }
+                  : data.points == 1 || data.points == 2
+                  ? { color: "#fdee00" }
+                  : { color: "#00c165" },
+              ]}
+            />
+          )}
+          {data && data.points != -1 && (
+            <Text
+              style={[
+                styles.points,
+                data.points == 0
+                  ? { color: "#FFFFFF" }
+                  : data.points == 1 || data.points == 2
+                  ? { color: "#000000" }
+                  : { color: "#FFFFFF" },
+              ]}
+            >
+              {data.points}
+            </Text>
+          )}
+          {props.photo ? (
+            <Image style={styles.avatar} source={{ uri: props.photo }} />
+          ) : (
+            <Image
+              style={styles.avatar}
+              source={require("../../assets/EURO2024logo.png")}
+            />
+          )}
+          <Text style={styles.result}>{data && data.type}</Text>
+        </View>
+        <View style={styles.bottom}>
+          <Text style={styles.nick}>{props.name}</Text>
+        </View>
       </View>
-      <View style={styles.bottom}>
-        <Text style={styles.nick}>{props.name}</Text>
-      </View>
-    </View>
+    )
   );
 }
