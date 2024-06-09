@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   top: {
     width: "100%",
-    height: 42,
+    height: 36,
     backgroundColor: "#003279",
     flexDirection: "row",
     alignItems: "center",
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   team: {
     color: "#FFFFFF",
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     marginLeft: 16,
   },
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 1,
   },
   avatar: {
     width: 20,

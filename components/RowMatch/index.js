@@ -18,7 +18,6 @@ export default function RowMatch(props) {
     const docSnap = await getDoc(todoRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       setMatch(docSnap.data());
     }
   };

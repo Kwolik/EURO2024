@@ -41,14 +41,17 @@ export default function KingFootballerRow() {
         <View style={styles.bottom}>
           {footballer.map(
             (name, index) =>
-              item == name.name &&
-              name.photo && (
+              item == name.name && (
                 <View style={styles.player} key={index}>
                   <Image
                     style={styles.avatar}
-                    source={{
-                      uri: name.photo,
-                    }}
+                    source={
+                      name.photo
+                        ? {
+                            uri: name.photo,
+                          }
+                        : require("../../assets/EURO2024logo.png")
+                    }
                   />
                   <Text style={styles.teams}>{name.nameUser}</Text>
                 </View>

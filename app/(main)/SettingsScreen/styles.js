@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   nick: {
     color: "#FFFFFF",
     fontSize: 18,
-    width: "40%",
+    width: "42%",
   },
   viewPoints: {
     flexDirection: "row",

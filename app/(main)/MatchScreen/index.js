@@ -1,4 +1,11 @@
-import { View, ImageBackground, Text, FlatList } from "react-native";
+import {
+  View,
+  ImageBackground,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./styles.js";
 import CountryFlag from "react-native-country-flag";
@@ -15,11 +22,14 @@ import {
 import { useRoute } from "@react-navigation/native";
 import TypeResult from "../../../components/TypeResult/index.js";
 import LoadingScreen from "../../../components/LoadingScreen/index.js";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useRouter } from "expo-router";
 
 export default function MatchScreen() {
   const [match, setMatch] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const route = useRoute();
+  const router = useRouter();
 
   var day = new Date().getDate(); //Current Date
   if (day < 10) day = "0" + day;
@@ -32,7 +42,6 @@ export default function MatchScreen() {
     const docSnap = await getDoc(todoRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       setMatch(docSnap.data());
     }
   };
@@ -117,6 +126,18 @@ export default function MatchScreen() {
           />
         ) : (
           <View></View>
+        )}
+        {Platform.OS === "ios" && (
+          <View style={styles.buttonBack}>
+            <TouchableOpacity style={styles.back} onPress={() => router.back()}>
+              <MaterialIcons
+                name="arrow-back-ios-new"
+                size={24}
+                color={"#FFFFFF"}
+              />
+              <Text style={styles.textBack}>Powrót do listy meczy</Text>
+            </TouchableOpacity>
+          </View>
         )}
       </ImageBackground>
     </View>

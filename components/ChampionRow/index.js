@@ -38,7 +38,7 @@ export default function ChampionRow() {
           {TeamList.map(
             (team, index) =>
               item == team.value && (
-                <CountryFlag isoCode={team.code} size={32} key={index} />
+                <CountryFlag isoCode={team.code} size={24} key={index} />
               )
           )}
           <Text style={styles.team}>{item}</Text>
@@ -46,14 +46,17 @@ export default function ChampionRow() {
         <View style={styles.bottom}>
           {king.map(
             (name, index) =>
-              item == name.team &&
-              name.photo && (
+              item == name.team && (
                 <View style={styles.player} key={index}>
                   <Image
                     style={styles.avatar}
-                    source={{
-                      uri: name.photo,
-                    }}
+                    source={
+                      name.photo
+                        ? {
+                            uri: name.photo,
+                          }
+                        : require("../../assets/EURO2024logo.png")
+                    }
                   />
                   <Text style={styles.teams}>{name.name}</Text>
                 </View>

@@ -105,6 +105,26 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  buttonBack: {
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 100,
+    width: "100%",
+  },
+  back: {
+    backgroundColor: "#003279",
+    height: 42,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 16,
+  },
+  textBack: {
+    fontSize: 16,
+    color: "#FFFFFF",
+    padding: 8,
+  },
 });
 
 export default styles;

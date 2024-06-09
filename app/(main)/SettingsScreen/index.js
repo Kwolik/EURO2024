@@ -201,7 +201,9 @@ export default function MatchesScreen() {
               ></TextInput>
               <View style={styles.viewPoints}>
                 <Text style={styles.points}>{points} </Text>
-                <Text style={styles.nick}>punkty</Text>
+                <Text style={styles.nick}>
+                  pkt
+                </Text>
               </View>
             </View>
             <View style={styles.bottom}>
@@ -215,7 +217,6 @@ export default function MatchesScreen() {
                 <Text style={styles.desc}>Edytuj swoje dane</Text>
               </TouchableOpacity>
             </View>
-            <Text style={styles.position}>#2</Text>
           </View>
         ) : (
           <LoadingScreen />
