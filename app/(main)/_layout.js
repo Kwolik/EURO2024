@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, router } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import {
   Image,
   View,
@@ -9,9 +9,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { appSignOut } from "../../store";
 
 export default function _layout() {
+  const router = useRouter();
   return (
     <Stack>
       <Stack.Screen
@@ -23,6 +25,17 @@ export default function _layout() {
         options={() => ({
           title: "Mecze",
           headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity
+              style={styles.buttonBack}
+              onPress={() => router.back()}
+            >
+              <MaterialIcons
+                name="arrow-back-ios-new"
+                style={styles.iconBack}
+              />
+            </TouchableOpacity>
+          ),
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -52,6 +65,17 @@ export default function _layout() {
         options={() => ({
           title: "Ranking",
           headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity
+              style={styles.buttonBack}
+              onPress={() => router.back()}
+            >
+              <MaterialIcons
+                name="arrow-back-ios-new"
+                style={styles.iconBack}
+              />
+            </TouchableOpacity>
+          ),
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -77,6 +101,17 @@ export default function _layout() {
         options={() => ({
           title: "Profil",
           headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity
+              style={styles.buttonBack}
+              onPress={() => router.back()}
+            >
+              <MaterialIcons
+                name="arrow-back-ios-new"
+                style={styles.iconBack}
+              />
+            </TouchableOpacity>
+          ),
           headerTitle: (props) => (
             <View style={styles.header}>
               <Image
@@ -142,5 +177,13 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: "#FFFFFF",
     marginLeft: 12,
+  },
+  buttonBack: {
+    position: "absolute",
+    left: -20,
+  },
+  iconBack: {
+    fontSize: 32,
+    color: "#FFFFFF",
   },
 });
