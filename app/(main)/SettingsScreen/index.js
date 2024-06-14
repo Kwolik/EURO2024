@@ -25,7 +25,7 @@ import LoadingScreen from "../../../components/LoadingScreen/index.js";
 import { Snackbar } from "react-native-paper";
 
 export default function MatchesScreen() {
-  const [points, setPoints] = useState("");
+  const [points, setPoints] = useState();
   const [photo, setPhoto] = useState("");
   const [nameUser, setNameUser] = useState("");
   const [kingFootballer, setKingFootballer] = useState("");
@@ -39,8 +39,8 @@ export default function MatchesScreen() {
   var day = new Date().getDate(); //Current Date
   if (day < 10) day = "0" + day;
   var month = new Date().getMonth() + 1; //Current Month
+  if (month < 10) month = "0" + month;
   var hours = new Date().getHours(); //Current Hours
-  var min = new Date().getMinutes(); //Current Minutes
 
   const bottomSheetRef = useRef(BottomSheet);
   const handleSheetChanges = useCallback((index) => {
@@ -201,9 +201,7 @@ export default function MatchesScreen() {
               ></TextInput>
               <View style={styles.viewPoints}>
                 <Text style={styles.points}>{points} </Text>
-                <Text style={styles.nick}>
-                  pkt
-                </Text>
+                <Text style={styles.nick}>pkt</Text>
               </View>
             </View>
             <View style={styles.bottom}>
@@ -227,7 +225,7 @@ export default function MatchesScreen() {
               <Text style={styles.info1}>Mistrz</Text>
               <Text style={styles.type1}>{champion}</Text>
               {day + "." + month < "14.06" ||
-              (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+              (day + "." + month == "14.06" && hours < "21") ? (
                 <TouchableOpacity onPress={() => betKing()}>
                   <Foundation name="pencil" style={styles.icon1} />
                 </TouchableOpacity>
@@ -246,13 +244,13 @@ export default function MatchesScreen() {
                 textContentType="name"
                 editable={
                   day + "." + month < "14.06" ||
-                  (day + "." + month == "14.06" && hours + ":" + min <= "21:00")
+                  (day + "." + month == "14.06" && hours < "21")
                     ? true
                     : false
                 } //lol
               ></TextInput>
               {day + "." + month < "14.06" ||
-              (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+              (day + "." + month == "14.06" && hours < "21") ? (
                 <TouchableOpacity onPress={() => betFootballer()}>
                   <Foundation name="pencil" style={styles.icon2} />
                 </TouchableOpacity>
@@ -281,7 +279,7 @@ export default function MatchesScreen() {
           </View>
         )}
         {day + "." + month < "14.06" ||
-        (day + "." + month == "14.06" && hours + ":" + min <= "21:00") ? (
+        (day + "." + month == "14.06" && hours < "21") ? (
           <SafeAreaView style={styles.bottomSheet}>
             <BottomSheet
               ref={bottomSheetRef}

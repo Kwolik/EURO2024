@@ -34,8 +34,8 @@ export default function MatchScreen() {
   var day = new Date().getDate(); //Current Date
   if (day < 10) day = "0" + day;
   var month = new Date().getMonth() + 1; //Current Month
+  if (month < 10) month = "0" + month;
   var hours = new Date().getHours(); //Current Hours
-  var min = new Date().getMinutes(); //Current Minutes
 
   const updateMachtes = async () => {
     const todoRef = doc(db, "matches", route.params.id);
@@ -115,7 +115,8 @@ export default function MatchScreen() {
           />
         </View>
         {day + "." + month < match.date ||
-        (day + "." + month == match.date && hours + ":" + min <= match.hour) ? (
+        (day + "." + month == match.date &&
+          hours < match.hour.substring(0, 2)) ? (
           <TypeResult
             club1={match.club1}
             club1id={match.club1id}
