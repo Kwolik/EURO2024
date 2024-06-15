@@ -26,10 +26,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
   },
-  flatlist: {
-    position: "absolute",
-    marginTop: 100,
-  },
   mainTeams: {
     justifyContent: "center",
     flexDirection: "row",
@@ -59,7 +55,6 @@ const styles = StyleSheet.create({
     color: "#003279",
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 2,
   },
   button: {
     justifyContent: "center",

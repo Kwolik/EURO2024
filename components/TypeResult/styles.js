@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     padding: 4,
+    backgroundColor: "#003279",
+    width: "98%",
+    borderRadius: 20,
+    marginLeft: 4,
   },
   viewResult: {
     flexDirection: "row",
